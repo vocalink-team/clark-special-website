@@ -79,8 +79,8 @@
     const passwordForm = $("password-form");
     const passwordLabel = passwordForm?.querySelector("label");
     const passwordButton = passwordForm?.querySelector("button[type=submit]");
-    const passwordToggle = $("password-toggle");
     const passwordError = $("password-error");
+    const passwordNote = document.querySelector(".password-note");
     const startLead = document.querySelector(".start-card .lead");
     const startTitle = document.querySelector(".start-card h1");
     const levelLabel = $("level-label");
@@ -94,25 +94,19 @@
       setText(startTitle, "Quiz Challenge");
       setText(startLead, "Enter the start password to begin the challenge.");
       setText(passwordLabel, "Start Password");
+      setText(passwordNote, "Please enter using hiragana only.");
       setText(passwordButton, "Start");
       if (startPassword) startPassword.placeholder = "Enter password";
       setText(passwordError, "The start password is incorrect.");
-      if (passwordToggle) {
-        passwordToggle.textContent = "Show";
-        passwordToggle.setAttribute("aria-label", "Show password");
-      }
       setText(resultEyebrow, "CHALLENGE COMPLETE");
     } else {
       setText(startTitle, "クイズチャレンジ");
       setText(startLead, "スタートパスワードを入力して挑戦を開始してください。");
       setText(passwordLabel, "スタートパスワード");
+      setText(passwordNote, "入力は全てひらがなで入力してください");
       setText(passwordButton, "スタート");
       if (startPassword) startPassword.placeholder = "パスワードを入力";
       setText(passwordError, "スタートパスワードが正しくありません。");
-      if (passwordToggle) {
-        passwordToggle.textContent = "表示";
-        passwordToggle.setAttribute("aria-label", "パスワードを表示");
-      }
       setText(resultEyebrow, "CHALLENGE COMPLETE");
     }
 
@@ -155,14 +149,6 @@
 
     $("lang-ja").addEventListener("click", () => setLanguage("ja"));
     $("lang-en").addEventListener("click", () => setLanguage("en"));
-
-    $("password-toggle").addEventListener("click", () => {
-      const input = $("start-password");
-      if (!input) return;
-      input.type = "text";
-      render();
-      input.focus();
-    });
 
     render();
 
