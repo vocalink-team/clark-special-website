@@ -1,4 +1,5 @@
 const START_PASSWORD = "1234";
+const CHALLENGE_USED_KEY = "quizChallengeUsed";
 
 const questions = [
   {
@@ -46,15 +47,35 @@ function showScreen(name) {
   screens[name].classList.add("active");
 }
 
+function showAlreadyUsed() {
+  resultTitle.textContent = "CHALLENGE END";
+  resultMessage.textContent = "この端末では、すでに挑戦済みです。再挑戦はできません。";
+  showScreen("result");
+}
+
+// ページを閉じたり再読み込みしても、挑戦済み状態を維持する
+if (localStorage.getItem(CHALLENGE_USED_KEY) === "true") {
+  showAlreadyUsed();
+}
+
 passwordForm.addEventListener("submit", (event) => {
   event.preventDefault();
   passwordError.hidden = true;
+
+  // すでに挑戦済みなら再スタートさせない
+  if (localStorage.getItem(CHALLENGE_USED_KEY) === "true") {
+    showAlreadyUsed();
+    return;
+  }
 
   if (passwordInput.value !== START_PASSWORD) {
     passwordError.hidden = false;
     passwordInput.select();
     return;
   }
+
+  // 正しいパスワードを入力して開始した時点で「1回使用済み」にする
+  localStorage.setItem(CHALLENGE_USED_KEY, "true");
 
   currentQuestion = 0;
   finished = false;
