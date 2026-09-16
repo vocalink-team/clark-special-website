@@ -19,12 +19,6 @@
     }
   };
 
-  const failedQuestions = {
-    1: questions[1].en,
-    2: questions[2].en,
-    3: questions[3].en
-  };
-
   function setText(element, value) {
     if (!element || element.textContent === value) return;
     element.textContent = value;
@@ -35,28 +29,47 @@
     element.innerHTML = value;
   }
 
+  function getResultType(title) {
+    if (!title) return "";
+    if (title.textContent === "CLEAR!" || title.textContent === "クリア！") return "clear";
+    if (title.textContent === "CHALLENGE END" || title.textContent === "チャレンジ終了") return "failed";
+    return "";
+  }
+
+  function getFailedNumber(message) {
+    const match = message?.textContent.match(/QUESTION\s*(\d+)/i) || message?.textContent.match(/第(\d+)問/);
+    return match ? Number(match[1]) : null;
+  }
+
   function renderResult() {
     const title = $("result-title");
     const message = $("result-message");
     if (!title || !message) return;
 
-    const isClear = title.textContent === "CLEAR!" || title.textContent === "クリア！";
-    const failedMatch = message.textContent.match(/QUESTION\s*(\d+)/i) || message.textContent.match(/第(\d+)問/);
-    const failedNumber = failedMatch ? Number(failedMatch[1]) : null;
+    const resultType = getResultType(title);
+    const failedNumber = getFailedNumber(message);
 
     if (language === "en") {
-      if (isClear) {
+      if (resultType === "clear") {
         setText(title, "CLEAR!");
         setHTML(message, "You answered every question correctly. Congratulations!<br><br><strong>Please show this screen to the student council.</strong>");
-      } else {
+      } else if (resultType === "failed") {
+        const questionText = failedNumber && questions[failedNumber]
+          ? questions[failedNumber].en
+          : "The challenge ended because an answer was incorrect.";
         setText(title, "CHALLENGE END");
-        const questionText = failedQuestions[failedNumber] || "The challenge ended because an answer was incorrect.";
         setHTML(message, `Incorrect question<br><br><strong>QUESTION ${failedNumber || "-"}</strong><br>${questionText}<br><br><strong>Please show this screen to the student council.</strong>`);
       }
     } else {
-      if (isClear) {
+      if (resultType === "clear") {
         setText(title, "CLEAR!");
         setHTML(message, "全ての問題を正解しました。おめでとうございます！<br><br><strong>この画面を生徒会に見せてください。</strong>");
+      } else if (resultType === "failed") {
+        const questionText = failedNumber && questions[failedNumber]
+          ? questions[failedNumber].ja
+          : "不正解だったため、チャレンジが終了しました。";
+        setText(title, "CHALLENGE END");
+        setHTML(message, `不正解だった問題<br><br><strong>QUESTION ${failedNumber || "-"}</strong><br>${questionText}<br><br><strong>この画面を生徒会に見せてください。</strong>`);
       }
     }
   }
