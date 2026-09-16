@@ -15,7 +15,7 @@ const questions = [
     answer: 1
   },
   {
-    level: 2,
+    level: 3,
     type: "choice",
     question: "この法則に当てはまる「？」の数字は？\n青 blue → 4\n赤 red → 3\n緑 green → 5\n黄 yellow → ?",
     choices: ["1", "4", "6", "9"],
