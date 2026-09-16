@@ -8,7 +8,7 @@ const questions = [
     answer: ["横山栄悟", "よこやまえいご"]
   },
   {
-    level: 1,
+    level: 2,
     type: "choice",
     question: "🐱 + 🐱 + 🐱 = 30</br>🐱 + 🐶 + 🐶 = 20</br>🐶 + 🍎 = 8</br>🍎 = ?",
     choices: ["2", "3", "4", "5"],
