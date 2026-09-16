@@ -82,11 +82,34 @@ function showQuestion() {
   });
 }
 
+function showFailedQuestion(questionNumber, item) {
+  resultTitle.textContent = "CHALLENGE END";
+
+  // innerHTMLではなくDOM要素を使って、問題文が確実に表示されるようにする
+  resultMessage.replaceChildren();
+
+  const heading = document.createElement("strong");
+  heading.textContent = "不正解だった問題";
+
+  const info = document.createElement("div");
+  info.textContent = `QUESTION ${questionNumber} / Lv.${item.level}`;
+  info.className = "failed-question-info";
+
+  const question = document.createElement("div");
+  question.textContent = item.question;
+  question.className = "failed-question-text";
+
+  resultMessage.appendChild(heading);
+  resultMessage.appendChild(info);
+  resultMessage.appendChild(question);
+}
+
 function answerQuestion(selected) {
   if (finished) return;
   finished = true;
 
   const item = questions[currentQuestion];
+  const questionNumber = currentQuestion + 1;
   const buttons = [...choices.querySelectorAll("button")];
   buttons.forEach(button => button.disabled = true);
 
@@ -114,12 +137,7 @@ function answerQuestion(selected) {
     quizMessage.hidden = false;
 
     setTimeout(() => {
-      resultTitle.textContent = "CHALLENGE END";
-      resultMessage.innerHTML = `
-        <strong>不正解だった問題</strong><br>
-        QUESTION ${currentQuestion + 1} / Lv.${item.level}<br><br>
-        ${item.question}
-      `;
+      showFailedQuestion(questionNumber, item);
       showScreen("result");
     }, 1000);
   }
