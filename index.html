@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>クイズチャレンジ</title>
   <meta name="description" content="生徒会企画 クイズチャレンジ">
-  <link rel="stylesheet" href="style.css?v=20260916-9">
+  <link rel="stylesheet" href="style.css?v=20260916-10">
 </head>
 <body>
   <main class="app">
@@ -16,7 +16,10 @@
         <p class="lead">スタートパスワードを入力して挑戦を開始してください。</p>
         <form id="password-form" autocomplete="off">
           <label for="start-password">スタートパスワード</label>
-          <input id="start-password" type="password" inputmode="text" placeholder="パスワードを入力" required>
+          <div class="password-field">
+            <input id="start-password" type="password" inputmode="text" placeholder="パスワードを入力" required>
+            <button id="password-toggle" type="button" class="password-toggle" aria-label="パスワードを表示">表示</button>
+          </div>
           <button type="submit">スタート</button>
           <p id="password-error" class="message error" hidden>スタートパスワードが正しくありません。</p>
         </form>
@@ -43,7 +46,7 @@
       </div>
     </section>
   </main>
-  <script src="script.js?v=20260916-9"></script>
-  <script src="language.js?v=20260916-9"></script>
+  <script src="script.js?v=20260916-10"></script>
+  <script src="language.js?v=20260916-10"></script>
 </body>
 </html>
