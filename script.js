@@ -126,9 +126,29 @@ function showFailedQuestion(questionNumber, item) {
   question.textContent = item.question;
   question.className = "failed-question-text";
 
+  const notice = document.createElement("div");
+  notice.textContent = "この画面を生徒会に見せてください。";
+  notice.className = "result-notice";
+
   resultMessage.appendChild(heading);
   resultMessage.appendChild(info);
   resultMessage.appendChild(question);
+  resultMessage.appendChild(notice);
+}
+
+function showClearResult() {
+  resultTitle.textContent = "CLEAR!";
+  resultMessage.replaceChildren();
+
+  const message = document.createElement("div");
+  message.textContent = "全ての問題を正解しました。おめでとうございます！";
+
+  const notice = document.createElement("div");
+  notice.textContent = "この画面を生徒会に見せてください。";
+  notice.className = "result-notice";
+
+  resultMessage.appendChild(message);
+  resultMessage.appendChild(notice);
 }
 
 function answerQuestion(selected) {
@@ -156,8 +176,7 @@ function answerQuestion(selected) {
     setTimeout(() => {
       currentQuestion++;
       if (currentQuestion >= questions.length) {
-        resultTitle.textContent = "CLEAR!";
-        resultMessage.textContent = "全ての問題を正解しました。おめでとうございます！";
+        showClearResult();
         showScreen("result");
       } else {
         finished = false;
