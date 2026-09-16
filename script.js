@@ -3,18 +3,20 @@ const START_PASSWORD = "1234";
 const questions = [
   {
     level: 1,
-    question: "ここに第1問の問題文を入れてください。",
-    choices: ["選択肢A", "選択肢B", "選択肢C", "選択肢D"],
-    answer: 0
+    type: "text",
+    question: "名古屋校の校長先生の名前を漢字でフルネームで書いてください。",
+    answer: "横山栄悟"
   },
   {
     level: 1,
+    type: "choice",
     question: "ここに第2問の問題文を入れてください。",
     choices: ["選択肢A", "選択肢B", "選択肢C", "選択肢D"],
     answer: 1
   },
   {
     level: 2,
+    type: "choice",
     question: "ここに第3問の問題文を入れてください。",
     choices: ["選択肢A", "選択肢B", "選択肢C", "選択肢D"],
     answer: 2
@@ -56,7 +58,6 @@ passwordForm.addEventListener("submit", (event) => {
     return;
   }
 
-  // デバッグ期間中は何度でも挑戦可能
   currentQuestion = 0;
   finished = false;
   showQuestion();
@@ -72,6 +73,30 @@ function showQuestion() {
   quizMessage.hidden = true;
   quizMessage.className = "message";
 
+  if (item.type === "text") {
+    const input = document.createElement("input");
+    input.type = "text";
+    input.id = "text-answer";
+    input.className = "text-answer";
+    input.placeholder = "漢字でフルネームを入力";
+    input.autocomplete = "off";
+
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "submit-answer";
+    button.textContent = "回答する";
+    button.addEventListener("click", () => answerQuestion(input.value));
+
+    input.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") answerQuestion(input.value);
+    });
+
+    choices.appendChild(input);
+    choices.appendChild(button);
+    input.focus();
+    return;
+  }
+
   item.choices.forEach((choice, index) => {
     const button = document.createElement("button");
     button.type = "button";
@@ -82,10 +107,12 @@ function showQuestion() {
   });
 }
 
+function normalizeAnswer(value) {
+  return String(value).trim().replace(/\s+/g, "");
+}
+
 function showFailedQuestion(questionNumber, item) {
   resultTitle.textContent = "CHALLENGE END";
-
-  // innerHTMLではなくDOM要素を使って、問題文が確実に表示されるようにする
   resultMessage.replaceChildren();
 
   const heading = document.createElement("strong");
@@ -113,8 +140,15 @@ function answerQuestion(selected) {
   const buttons = [...choices.querySelectorAll("button")];
   buttons.forEach(button => button.disabled = true);
 
-  if (selected === item.answer) {
-    buttons[selected].classList.add("correct");
+  const isCorrect = item.type === "text"
+    ? normalizeAnswer(selected) === normalizeAnswer(item.answer)
+    : selected === item.answer;
+
+  if (isCorrect) {
+    if (item.type === "choice" && buttons[selected]) {
+      buttons[selected].classList.add("correct");
+    }
+
     quizMessage.textContent = "正解！次の問題へ進みます。";
     quizMessage.className = "message success";
     quizMessage.hidden = false;
@@ -131,7 +165,10 @@ function answerQuestion(selected) {
       }
     }, 900);
   } else {
-    buttons[selected].classList.add("wrong");
+    if (item.type === "choice" && buttons[selected]) {
+      buttons[selected].classList.add("wrong");
+    }
+
     quizMessage.textContent = "不正解。この挑戦は終了です。";
     quizMessage.className = "message error";
     quizMessage.hidden = false;
