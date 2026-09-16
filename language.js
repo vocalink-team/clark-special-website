@@ -78,7 +78,8 @@
     const startPassword = $("start-password");
     const passwordForm = $("password-form");
     const passwordLabel = passwordForm?.querySelector("label");
-    const passwordButton = passwordForm?.querySelector("button");
+    const passwordButton = passwordForm?.querySelector("button[type=submit]");
+    const passwordToggle = $("password-toggle");
     const passwordError = $("password-error");
     const startLead = document.querySelector(".start-card .lead");
     const startTitle = document.querySelector(".start-card h1");
@@ -96,6 +97,10 @@
       setText(passwordButton, "Start");
       if (startPassword) startPassword.placeholder = "Enter password";
       setText(passwordError, "The start password is incorrect.");
+      if (passwordToggle) {
+        passwordToggle.textContent = startPassword?.type === "text" ? "Hide" : "Show";
+        passwordToggle.setAttribute("aria-label", startPassword?.type === "text" ? "Hide password" : "Show password");
+      }
       setText(resultEyebrow, "CHALLENGE COMPLETE");
     } else {
       setText(startTitle, "クイズチャレンジ");
@@ -104,6 +109,10 @@
       setText(passwordButton, "スタート");
       if (startPassword) startPassword.placeholder = "パスワードを入力";
       setText(passwordError, "スタートパスワードが正しくありません。");
+      if (passwordToggle) {
+        passwordToggle.textContent = startPassword?.type === "text" ? "隠す" : "表示";
+        passwordToggle.setAttribute("aria-label", startPassword?.type === "text" ? "パスワードを隠す" : "パスワードを表示");
+      }
       setText(resultEyebrow, "CHALLENGE COMPLETE");
     }
 
@@ -146,6 +155,14 @@
 
     $("lang-ja").addEventListener("click", () => setLanguage("ja"));
     $("lang-en").addEventListener("click", () => setLanguage("en"));
+
+    $("password-toggle").addEventListener("click", () => {
+      const input = $("start-password");
+      if (!input) return;
+      input.type = input.type === "password" ? "text" : "password";
+      render();
+      input.focus();
+    });
 
     render();
 
