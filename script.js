@@ -4,8 +4,8 @@ const questions = [
   {
     level: 1,
     type: "text",
-    question: "名古屋校の校長先生の名前を漢字でフルネームで書いてください。",
-    answer: "横山栄悟"
+    question: "名古屋校の校長先生の名前をひらがなもしくは漢字で答えろ。",
+    answer: ["横山栄悟", "よこやまえいご"]
   },
   {
     level: 1,
@@ -68,7 +68,7 @@ function showQuestion() {
   const item = questions[currentQuestion];
   levelLabel.textContent = `Lv.${item.level}`;
   questionCount.textContent = `QUESTION ${currentQuestion + 1}`;
-  questionText.textContent = item.question;
+  questionText.innerHTML = item.question;
   choices.innerHTML = "";
   quizMessage.hidden = true;
   quizMessage.className = "message";
@@ -78,7 +78,7 @@ function showQuestion() {
     input.type = "text";
     input.id = "text-answer";
     input.className = "text-answer";
-    input.placeholder = "漢字でフルネームを入力";
+    input.placeholder = "ひらがなまたは漢字で入力";
     input.autocomplete = "off";
 
     const button = document.createElement("button");
@@ -141,7 +141,7 @@ function answerQuestion(selected) {
   buttons.forEach(button => button.disabled = true);
 
   const isCorrect = item.type === "text"
-    ? normalizeAnswer(selected) === normalizeAnswer(item.answer)
+    ? item.answer.some(answer => normalizeAnswer(selected) === normalizeAnswer(answer))
     : selected === item.answer;
 
   if (isCorrect) {
