@@ -98,8 +98,8 @@
       if (startPassword) startPassword.placeholder = "Enter password";
       setText(passwordError, "The start password is incorrect.");
       if (passwordToggle) {
-        passwordToggle.textContent = startPassword?.type === "text" ? "Hide" : "Show";
-        passwordToggle.setAttribute("aria-label", startPassword?.type === "text" ? "Hide password" : "Show password");
+        passwordToggle.textContent = "Show";
+        passwordToggle.setAttribute("aria-label", "Show password");
       }
       setText(resultEyebrow, "CHALLENGE COMPLETE");
     } else {
@@ -110,8 +110,8 @@
       if (startPassword) startPassword.placeholder = "パスワードを入力";
       setText(passwordError, "スタートパスワードが正しくありません。");
       if (passwordToggle) {
-        passwordToggle.textContent = startPassword?.type === "text" ? "隠す" : "表示";
-        passwordToggle.setAttribute("aria-label", startPassword?.type === "text" ? "パスワードを隠す" : "パスワードを表示");
+        passwordToggle.textContent = "表示";
+        passwordToggle.setAttribute("aria-label", "パスワードを表示");
       }
       setText(resultEyebrow, "CHALLENGE COMPLETE");
     }
@@ -159,7 +159,7 @@
     $("password-toggle").addEventListener("click", () => {
       const input = $("start-password");
       if (!input) return;
-      input.type = input.type === "password" ? "text" : "password";
+      input.type = "text";
       render();
       input.focus();
     });
