@@ -43,6 +43,32 @@ button {
 button:hover { transform: translateY(-1px); opacity: .92; }
 button:disabled { cursor: default; opacity: .6; transform: none; }
 
+.language-switcher {
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  z-index: 1000;
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid #ddd6cc;
+  border-radius: 14px;
+  background: rgba(255,255,255,.9);
+  box-shadow: 0 8px 24px rgba(54, 47, 38, .10);
+  backdrop-filter: blur(8px);
+}
+.language-button {
+  min-width: 48px;
+  padding: 9px 11px;
+  border-radius: 10px;
+  background: transparent;
+  color: #777066;
+  font-size: .78rem;
+  letter-spacing: .06em;
+}
+.language-button:hover { background: #f1ede6; opacity: 1; transform: none; }
+.language-button.active { background: #24282f; color: #fff; }
+
 .quiz-header { display: flex; justify-content: space-between; gap: 12px; margin-bottom: 28px; color: #777066; font-size: .82rem; font-weight: 800; letter-spacing: .08em; }
 .quiz-header span:first-child { color: #24282f; font-size: 1rem; }
 h2 { font-size: clamp(1.4rem, 5vw, 2.2rem); line-height: 1.55; margin: 0 0 30px; }
@@ -75,4 +101,5 @@ h2 { font-size: clamp(1.4rem, 5vw, 2.2rem); line-height: 1.55; margin: 0 0 30px;
   .app { padding: 14px; }
   .card { border-radius: 22px; padding: 25px 20px; }
   .question-image { width: 100%; border-radius: 12px; }
+  .language-switcher { top: 10px; right: 10px; }
 }
