@@ -17,8 +17,8 @@ const questions = [
   {
     level: 2,
     type: "choice",
-    question: "ここに第3問の問題文を入れてください。",
-    choices: ["選択肢A", "選択肢B", "選択肢C", "選択肢D"],
+    question: "この法則に当てはまる「？」の数字は？\n青 blue → 4\n赤 red → 3\n緑 green → 5\n黄 yellow → ?",
+    choices: ["1", "4", "6", "9"],
     answer: 2
   }
 ];
