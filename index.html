@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>クイズチャレンジ</title>
+  <meta name="description" content="生徒会企画 クイズチャレンジ">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <section id="start-screen" class="screen active">
+      <div class="card start-card">
+        <p class="eyebrow">STUDENT COUNCIL EVENT</p>
+        <h1>クイズチャレンジ</h1>
+        <p class="lead">スタートパスワードを入力して挑戦を開始してください。</p>
+        <form id="password-form" autocomplete="off">
+          <label for="start-password">スタートパスワード</label>
+          <input id="start-password" type="password" inputmode="text" placeholder="パスワードを入力" required>
+          <button type="submit">スタート</button>
+          <p id="password-error" class="message error" hidden>スタートパスワードが正しくありません。</p>
+        </form>
+      </div>
+    </section>
+
+    <section id="quiz-screen" class="screen" aria-live="polite">
+      <div class="card quiz-card">
+        <div class="quiz-header">
+          <span id="level-label">Lv.1</span>
+          <span id="question-count">QUESTION 1</span>
+        </div>
+        <h2 id="question-text"></h2>
+        <div id="choices" class="choices"></div>
+        <p id="quiz-message" class="message" hidden></p>
+      </div>
+    </section>
+
+    <section id="result-screen" class="screen">
+      <div class="card result-card">
+        <p class="eyebrow">CHALLENGE COMPLETE</p>
+        <h1 id="result-title">終了</h1>
+        <p id="result-message"></p>
+      </div>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
