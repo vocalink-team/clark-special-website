@@ -10,7 +10,7 @@ const questions = [
   {
     level: 1,
     type: "choice",
-    question: "🐱 + 🐱 + 🐱 = 30\n🐱 + 🐶 + 🐶 = 20\n🐶 + 🍎 = 8\n🍎 = ?",
+    question: "🐱 + 🐱 + 🐱 = 30</br>🐱 + 🐶 + 🐶 = 20</br>🐶 + 🍎 = 8</br>🍎 = ?",
     choices: ["2", "3", "4", "5"],
     answer: 1
   },
