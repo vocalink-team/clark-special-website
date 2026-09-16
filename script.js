@@ -53,7 +53,6 @@ function showAlreadyUsed() {
   showScreen("result");
 }
 
-// ページを閉じたり再読み込みしても、挑戦済み状態を維持する
 if (localStorage.getItem(CHALLENGE_USED_KEY) === "true") {
   showAlreadyUsed();
 }
@@ -62,7 +61,6 @@ passwordForm.addEventListener("submit", (event) => {
   event.preventDefault();
   passwordError.hidden = true;
 
-  // すでに挑戦済みなら再スタートさせない
   if (localStorage.getItem(CHALLENGE_USED_KEY) === "true") {
     showAlreadyUsed();
     return;
@@ -74,9 +72,7 @@ passwordForm.addEventListener("submit", (event) => {
     return;
   }
 
-  // 正しいパスワードを入力して開始した時点で「1回使用済み」にする
   localStorage.setItem(CHALLENGE_USED_KEY, "true");
-
   currentQuestion = 0;
   finished = false;
   showQuestion();
@@ -135,7 +131,11 @@ function answerQuestion(selected) {
 
     setTimeout(() => {
       resultTitle.textContent = "CHALLENGE END";
-      resultMessage.textContent = "残念！今回はここで終了です。";
+      resultMessage.innerHTML = `
+        <strong>不正解だった問題</strong><br>
+        QUESTION ${currentQuestion + 1} / Lv.${item.level}<br><br>
+        ${item.question}
+      `;
       showScreen("result");
     }, 1000);
   }
