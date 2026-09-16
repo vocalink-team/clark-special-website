@@ -10,8 +10,8 @@ const questions = [
   {
     level: 1,
     type: "choice",
-    question: "ここに第2問の問題文を入れてください。",
-    choices: ["選択肢A", "選択肢B", "選択肢C", "選択肢D"],
+    question: "🐱 + 🐱 + 🐱 = 30\n🐱 + 🐶 + 🐶 = 20\n🐶 + 🍎 = 8\n🍎 = ?",
+    choices: ["2", "3", "4", "5"],
     answer: 1
   },
   {
