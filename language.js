@@ -103,7 +103,7 @@
       if (scheduleLockMessage) {
         setText(scheduleLockMessage.querySelector("h2"), "The quiz is not available yet");
         setText(scheduleLockMessage.querySelector("p:not(.schedule-lock-icon):not(.schedule-lock-date)"), "Please wait until the event date and time.");
-        setText(scheduleLockMessage.querySelector(".schedule-lock-date"), "Event date: September 25, 2026");
+        setText(scheduleLockMessage.querySelector(".schedule-lock-date"), "Event date: September 18, 2026");
       }
     } else {
       setText(startTitle, "クイズチャレンジ");
@@ -117,7 +117,7 @@
       if (scheduleLockMessage) {
         setText(scheduleLockMessage.querySelector("h2"), "クイズはまだ開始できません");
         setText(scheduleLockMessage.querySelector("p:not(.schedule-lock-icon):not(.schedule-lock-date)"), "開催日時までお待ちください。");
-        setText(scheduleLockMessage.querySelector(".schedule-lock-date"), "開催日時：2026年9月25日");
+        setText(scheduleLockMessage.querySelector(".schedule-lock-date"), "開催日時：2026年9月18日");
       }
     }
 
