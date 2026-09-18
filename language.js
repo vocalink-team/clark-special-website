@@ -89,6 +89,7 @@
     const resultEyebrow = document.querySelector(".result-card .eyebrow");
     const langJa = $("lang-ja");
     const langEn = $("lang-en");
+      const scheduleLockMessage = $("schedule-lock-message");
 
     if (language === "en") {
       setText(startTitle, "Quiz Challenge");
@@ -99,6 +100,11 @@
       if (startPassword) startPassword.placeholder = "Enter password";
       setText(passwordError, "The start password is incorrect.");
       setText(resultEyebrow, "CHALLENGE COMPLETE");
+      if (scheduleLockMessage) {
+        setText(scheduleLockMessage.querySelector("h2"), "The quiz is not available yet");
+        setText(scheduleLockMessage.querySelector("p:not(.schedule-lock-icon):not(.schedule-lock-date)"), "Please wait until the event date and time.");
+        setText(scheduleLockMessage.querySelector(".schedule-lock-date"), "Event date: September 25, 2026");
+      }
     } else {
       setText(startTitle, "クイズチャレンジ");
       setText(startLead, "スタートパスワードを入力して挑戦を開始してください。");
@@ -108,6 +114,11 @@
       if (startPassword) startPassword.placeholder = "パスワードを入力";
       setText(passwordError, "スタートパスワードが正しくありません。");
       setText(resultEyebrow, "CHALLENGE COMPLETE");
+      if (scheduleLockMessage) {
+        setText(scheduleLockMessage.querySelector("h2"), "クイズはまだ開始できません");
+        setText(scheduleLockMessage.querySelector("p:not(.schedule-lock-icon):not(.schedule-lock-date)"), "開催日時までお待ちください。");
+        setText(scheduleLockMessage.querySelector(".schedule-lock-date"), "開催日時：2026年9月25日");
+      }
     }
 
     if (questionCount && questionText) {
