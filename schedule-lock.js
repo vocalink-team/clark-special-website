@@ -1,7 +1,7 @@
 (() => {
   // クイズ開始可能日時（日本時間）
   // 開催日時が決まったら、この日時を変更してください。
-  const UNLOCK_AT = "2026-09-18T13:50:00+09:00";
+  const UNLOCK_AT = "2026-09-25T00:00:00+09:00";
 
   function updateScheduleLock() {
     const startScreen = document.getElementById("start-screen");
@@ -40,9 +40,8 @@
         <p class="schedule-lock-icon" aria-hidden="true">🔒</p>
         <h2>クイズはまだ開始できません</h2>
         <p>開催日時までお待ちください。</p>
-        <p class="schedule-lock-date">開催日時：2026年9月18日</p>
+        <p class="schedule-lock-date">開催日時：2026年9月25日</p>
       `;
-      document.dispatchEvent(new Event("schedule-lock-message-created"));
       passwordForm.parentNode.insertBefore(lockedMessage, passwordForm);
     }
   }
