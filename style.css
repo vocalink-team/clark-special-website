@@ -1,5 +1,8 @@
 * { box-sizing: border-box; }
 
+/* JS/HTMLがまだ読み込まれていない瞬間も含め、hidden要素を必ず非表示にする */
+[hidden] { display: none !important; }
+
 :root {
   font-family: -apple-system, BlinkMacSystemFont, "Noto Sans JP", "Hiragino Sans", sans-serif;
   color: #20242b;
