@@ -1,7 +1,7 @@
 (() => {
   // クイズ開始可能日時（日本時間）
   // 開催日時が決まったら、この日時を変更してください。
-  const UNLOCK_AT = "2026-09-25T00:00:00+09:00";
+  const UNLOCK_AT = "1970-01-01T00:00:00+09:00";
 
   function updateScheduleLock() {
     const startScreen = document.getElementById("start-screen");
