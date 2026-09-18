@@ -42,6 +42,7 @@
         <p>開催日時までお待ちください。</p>
         <p class="schedule-lock-date">開催日時：2026年9月18日</p>
       `;
+      document.dispatchEvent(new Event("schedule-lock-message-created"));
       passwordForm.parentNode.insertBefore(lockedMessage, passwordForm);
     }
   }
