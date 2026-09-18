@@ -12,9 +12,13 @@
     if (!startScreen || !passwordForm || !lead || !note) return;
     if (!startScreen.classList.contains("active")) return;
 
+    // 開催前はパスワード入力を絶対に表示・開始させない
+    const unlockTime = new Date(UNLOCK_AT).getTime();
+    const unlocked = Date.now() >= unlockTime;
+
     let lockedMessage = document.getElementById("schedule-lock-message");
 
-    const unlocked = Date.now() >= new Date(UNLOCK_AT).getTime();
+
 
     if (unlocked) {
       passwordForm.hidden = false;
