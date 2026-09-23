@@ -92,8 +92,8 @@
       const scheduleLockMessage = $("schedule-lock-message");
 
     if (language === "en") {
-      setText(startTitle, "Quiz Challenge");
-      setText(startLead, "Enter the start password to begin the challenge.");
+      setText(startTitle, "Student Council Challenge");
+      setText(startLead, "Enter the start password: the letters collected in Treasure Hunter.");
       setText(passwordLabel, "Start Password");
       setText(passwordNote, "Please enter using hiragana only.");
       setText(passwordButton, "Start");
@@ -106,8 +106,8 @@
         setText(scheduleLockMessage.querySelector(".schedule-lock-date"), "Event date: September 18, 2026");
       }
     } else {
-      setText(startTitle, "クイズチャレンジ");
-      setText(startLead, "スタートパスワードを入力して挑戦を開始してください。");
+      setText(startTitle, "生徒会の挑戦状");
+      setText(startLead, "スタートパスワード「トレジャーハンターで集めた文字」を入力してください。");
       setText(passwordLabel, "スタートパスワード");
       setText(passwordNote, "入力は全てひらがなで入力してください");
       setText(passwordButton, "スタート");
