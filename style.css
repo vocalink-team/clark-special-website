@@ -120,3 +120,21 @@ h2 { font-size: clamp(1.4rem, 5vw, 2.2rem); line-height: 1.55; margin: 0 0 30px;
   .question-image { width: 100%; border-radius: 12px; }
   .language-switcher { top: 10px; right: 10px; }
 }
+
+
+.site-version {
+  position: fixed;
+  left: 14px;
+  bottom: 12px;
+  z-index: 1000;
+  padding: 6px 10px;
+  border: 1px solid #ddd6cc;
+  border-radius: 10px;
+  background: rgba(255,255,255,.86);
+  color: #777066;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  box-shadow: 0 6px 18px rgba(54, 47, 38, .08);
+  backdrop-filter: blur(8px);
+}
