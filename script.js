@@ -51,12 +51,13 @@ function showScreen(name) {
   screens[name].classList.add("active");
 }
 
-passwordForm.addEventListener("submit", (event) => {
-  event.preventDefault();
+function startChallenge() {
   passwordError.hidden = true;
 
-  if (passwordInput.value !== START_PASSWORD) {
+  const entered = passwordInput.value.trim();
+  if (entered !== START_PASSWORD) {
     passwordError.hidden = false;
+    passwordInput.focus();
     passwordInput.select();
     return;
   }
@@ -65,6 +66,12 @@ passwordForm.addEventListener("submit", (event) => {
   finished = false;
   showQuestion();
   showScreen("quiz");
+}
+
+passwordForm.noValidate = true;
+passwordForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  startChallenge();
 });
 
 function showQuestion() {
